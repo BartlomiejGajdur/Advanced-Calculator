@@ -1,55 +1,44 @@
 # `advancedCalculator`
 
-Napisz program advanced_calculator. Ma on posiadać pętle główną, która będzie przyjmować dane od użytkownika i wyświetlać wynik, np. dla `5 % 3` ma zwrócić wynik `2`. Wszystkie komendy kalkulatora powinny być przechowywane w mapie, która jako klucz przechowuje znak `char` odwołujący się do konkretnej komendy (np. `+` -> dodaj , `%` -> modulo), a jako wartości `std::function<>` będące wraperem na wyrażenia lambda dokonujące określonej kalkulacji.
+Write a program called advanced_calculator. It should have a main loop that receives data from the user and displays the result, for example, for `5 % 3` it should return the result `2`. All calculator commands should be stored in a map that uses a char key to refer to a specific command (e.g. `+` -> add, `%` -> modulo) and a `std::function<>` value that is a wrapper for lambda expressions that perform a specific calculation.
 
-Program powinien także zwracać odpowiedni kod błędu, jeżeli użytkownik poda złe dane. Np. dzielenie przez `0` lub spróbuje dodać `ala + 5`.
+The program should also return the appropriate error code if the user provides incorrect data, such as dividing by `0` or trying to add `ala + 5`.
 
-* Input: `5 + 5` -> operacja dodawania dwóch liczb `5` i `5` -> output: `10`.
-* Input: `5 ^ 2` -> operacje potęgowania -> output `25`.
-* Input: `125 $ 3` -> operacja pierwiastka (sqrt za długie), pierwiastek sześcienny z `125` -> output: `5`.
-
-Zadanie dostarcz na gałąź [advanced-calculator](https://github.com/coders-school/stl/tree/advanced-calculator/homework/advanced-calculator).
+* Input: `5 + 5` -> operation of adding two numbers `5` and `5` -> output: `10`.
+* Input: `5 ^ 2` -> power operation -> output `25`.
+* Input: `125 $ 3` -> cube root operation (sqrt is too long), cube root of `125` -> output: `5`.
 
 ___
 
-### Funkcje kalkulatora
+### Calculator Functions
 
-* Dodawanie, mnożenie, dzielenie, odejmowanie (`+`,  `*` , `/` , `-`)
+* Addition, multiplication, division, subtraction (`+`, `*`, `/`, `-`)
 * Modulo (`%`)
-* Obliczanie silni (`!`)
-* Podnoszenie liczby do potęgi (`^`)
-* Obliczanie pierwiastka (`$`)
+* Calculating factorial (`!`)
+* Raising a number to a power (`^`)
+*Calculating square root (`$`)
 
 ___
 
 ### Error code
 
 * `Ok`
-* `BadCharacter` - znak inny niż liczba
-* `BadFormat` - zły format komendy np. + 5 4, powinno być 4 + 5
-* `DivideBy0` - dzielenie przez 0
-* `SqrtOfNegativeNumber` - pierwiastek z liczby ujemnej
-* `ModuleOfNonIntegerValue` - próba obliczenia % na liczbie niecałkowitej
+* `BadCharacter` - Char different than number
+* `BadFormat` - Bad command format -> eg. `+5 4`, should be `5 + 4`
+* `DivideBy0` - Divide by `0`
+* `SqrtOfNegativeNumber` - Square root of a negative number
+* `ModuleOfNonIntegerValue` - Attempting to calculate `%` on a non-integer
 
 ___
 
-### Funkcja, która będzie testowana
+### Function, that will be tested
 
 ```cpp
-
+ErrorCode process(std::string input, double* out)
 ```
 
-* Funkcja ta powinna przyjmować dane od użytkownika oraz dokonywać odpowiedniej kalkulacji
-* Jeżeli dane są poprawne, ma zwrócić `ErrorCode:Ok`, a w zmiennej `out` ma zapisać wynik
-* Jeżeli wystąpi któryś z błędów, funkcja ma go zwrócić, a w `out` ma nic nie zapisywać
+* The function should receive data from the user and perform the correct calculation
+* If the data is correct, it should return `ErrorCode:Ok` and save the output in a variable called `out`
+* If any errors occur, the function should return the error and not save anything in `out`
 
 ___
-
-## Dodaj właściwe pliki
-
-W CMakeLists.txt możesz zobaczyć które pliki będą kompilowane.
-
-```cmake
-add_executable(${PROJECT_NAME} main.cpp advancedCalculator.cpp)
-add_executable(${PROJECT_NAME}-ut test.cpp advancedCalculator.cpp)
-```
